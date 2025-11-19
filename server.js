@@ -40,6 +40,11 @@ app.use(cors({
 }));
 
 const app = express();
+app.use(cors({
+  origin: "*",
+  methods: ["GET", "POST"],
+  credentials: true
+}));
 const server = http.createServer(app);
 const io = new IOServer(server, { cors: { origin: true, credentials: true } });
 
@@ -498,3 +503,4 @@ io.on("connection", s => {
 // ---------- Start ----------
 
 server.listen(PORT, () => console.log(`✅ Running on http://localhost:${PORT}`));
+
