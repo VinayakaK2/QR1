@@ -14,6 +14,8 @@ import QRCode from "qrcode";
 import csurf from "csurf";
 import { v4 as uuidv4 } from "uuid";
 import { MongoClient } from "mongodb";
+import cors from "cors";
+
 
 dotenv.config();
 const PORT = process.env.PORT || 3000;
@@ -31,6 +33,11 @@ const CONFIG_LOCATION = {
 
 // Log loaded location config at startup
 console.log("[Config] Restaurant Location:", CONFIG_LOCATION);
+app.use(cors({
+    origin: "*",
+    methods: "GET,POST",
+    credentials: true
+}));
 
 const app = express();
 const server = http.createServer(app);
@@ -489,4 +496,5 @@ io.on("connection", s => {
 });
 
 // ---------- Start ----------
+
 server.listen(PORT, () => console.log(`✅ Running on http://localhost:${PORT}`));
