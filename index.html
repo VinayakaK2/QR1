@@ -535,7 +535,7 @@
             const { latitude, longitude } = pos.coords;
             try {
             const token = new URLSearchParams(window.location.search).get("token"); // from QR
-            const res = await fetch("/api/validate-location", {
+            const res = await fetch("https://qr1-dj5r.onrender.com/api/validate-location", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ token, lat: latitude, lng: longitude })
@@ -641,4 +641,5 @@
         });
     </script>
 </body>
+
 </html>
